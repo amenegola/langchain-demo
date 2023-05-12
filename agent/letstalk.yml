@@ -1,0 +1,1240 @@
+components:
+  schemas:
+    Appointment:
+      properties:
+        condition_id:
+          title: Condition Id
+          type: integer
+        date_and_time:
+          format: date-time
+          title: Date And Time
+          type: string
+        details:
+          title: Details
+          type: string
+        id:
+          title: Id
+          type: integer
+      required:
+      - id
+      - date_and_time
+      - condition_id
+      title: Appointment
+      type: object
+    AppointmentModifySerializer:
+      properties:
+        condition_id:
+          title: Condition Id
+          type: integer
+        date_and_time:
+          format: date-time
+          title: Date And Time
+          type: string
+        details:
+          title: Details
+          type: string
+      required:
+      - date_and_time
+      - condition_id
+      title: AppointmentModifySerializer
+      type: object
+    AppointmentWithConditionSerializer:
+      properties:
+        condition:
+          $ref: '#/components/schemas/Condition'
+        date_and_time:
+          format: date-time
+          title: Date And Time
+          type: string
+        details:
+          title: Details
+          type: string
+        id:
+          title: Id
+          type: integer
+      required:
+      - id
+      - date_and_time
+      - condition
+      title: AppointmentWithConditionSerializer
+      type: object
+    ConcernCreatorEnum:
+      description: Enumerates who can create concern
+      enum:
+      - patient
+      - doctor
+      title: ConcernCreatorEnum
+    ConcernModifySerializer:
+      description: Modify default concern serializer to restrict level
+      properties:
+        condition_id:
+          title: Condition Id
+          type: integer
+        creator:
+          $ref: '#/components/schemas/ConcernCreatorEnum'
+        details:
+          title: Details
+          type: string
+        level:
+          exclusiveMaximum: 6.0
+          exclusiveMinimum: 0.0
+          title: Level
+          type: integer
+        symptoms:
+          title: Symptoms
+          type: string
+      required:
+      - creator
+      - symptoms
+      - level
+      - condition_id
+      title: ConcernModifySerializer
+      type: object
+    ConcernSerializer:
+      description: Modify default concern serializer to restrict level
+      properties:
+        condition_id:
+          title: Condition Id
+          type: integer
+        creator:
+          $ref: '#/components/schemas/ConcernCreatorEnum'
+        details:
+          title: Details
+          type: string
+        id:
+          title: Id
+          type: integer
+        level:
+          exclusiveMaximum: 6.0
+          exclusiveMinimum: 0.0
+          title: Level
+          type: integer
+        symptoms:
+          title: Symptoms
+          type: string
+      required:
+      - id
+      - creator
+      - symptoms
+      - level
+      - condition_id
+      title: ConcernSerializer
+      type: object
+    ConcernWithConditionSerializer:
+      description: Modify default concern serializer to restrict level
+      properties:
+        condition:
+          $ref: '#/components/schemas/Condition'
+        creator:
+          $ref: '#/components/schemas/ConcernCreatorEnum'
+        details:
+          title: Details
+          type: string
+        id:
+          title: Id
+          type: integer
+        level:
+          exclusiveMaximum: 6.0
+          exclusiveMinimum: 0.0
+          title: Level
+          type: integer
+        symptoms:
+          title: Symptoms
+          type: string
+      required:
+      - id
+      - creator
+      - symptoms
+      - level
+      - condition
+      title: ConcernWithConditionSerializer
+      type: object
+    Condition:
+      properties:
+        details:
+          title: Details
+          type: string
+        doctor_id:
+          title: Doctor Id
+          type: integer
+        duration:
+          title: Duration
+          type: string
+        id:
+          title: Id
+          type: integer
+        name:
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      - duration
+      - doctor_id
+      title: Condition
+      type: object
+    ConditionAndDoctorModifySerializer:
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionModifyNoNameSerializer'
+        doctor:
+          $ref: '#/components/schemas/DoctorModifySerializer'
+      required:
+      - condition
+      - doctor
+      title: ConditionAndDoctorModifySerializer
+      type: object
+    ConditionAndDoctorSerializer:
+      properties:
+        condition:
+          $ref: '#/components/schemas/ConditionNoNameSerializer'
+        doctor:
+          $ref: '#/components/schemas/Doctor'
+      required:
+      - condition
+      - doctor
+      title: ConditionAndDoctorSerializer
+      type: object
+    ConditionDoctorNestedSerializer:
+      properties:
+        details:
+          title: Details
+          type: string
+        doctor:
+          $ref: '#/components/schemas/Doctor'
+        duration:
+          title: Duration
+          type: string
+        id:
+          title: Id
+          type: integer
+        name:
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      - duration
+      - doctor
+      title: ConditionDoctorNestedSerializer
+      type: object
+    ConditionModifyNoNameSerializer:
+      properties:
+        details:
+          title: Details
+          type: string
+        duration:
+          title: Duration
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      - duration
+      title: ConditionModifyNoNameSerializer
+      type: object
+    ConditionModifySerializer:
+      properties:
+        details:
+          title: Details
+          type: string
+        doctor_id:
+          title: Doctor Id
+          type: integer
+        duration:
+          title: Duration
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      - duration
+      - doctor_id
+      title: ConditionModifySerializer
+      type: object
+    ConditionNoNameSerializer:
+      properties:
+        details:
+          title: Details
+          type: string
+        duration:
+          title: Duration
+          type: string
+        id:
+          title: Id
+          type: integer
+        name:
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      - duration
+      title: ConditionNoNameSerializer
+      type: object
+    Doctor:
+      properties:
+        id:
+          title: Id
+          type: integer
+        name:
+          title: Name
+          type: string
+        specialism:
+          title: Specialism
+          type: string
+      required:
+      - id
+      - name
+      - specialism
+      title: Doctor
+      type: object
+    DoctorModifySerializer:
+      properties:
+        name:
+          title: Name
+          type: string
+        specialism:
+          title: Specialism
+          type: string
+      required:
+      - name
+      - specialism
+      title: DoctorModifySerializer
+      type: object
+    Expectation:
+      properties:
+        condition_id:
+          title: Condition Id
+          type: integer
+        details:
+          title: Details
+          type: string
+        id:
+          title: Id
+          type: integer
+        name:
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      - condition_id
+      title: Expectation
+      type: object
+    ExpectationModifySerializer:
+      properties:
+        condition_id:
+          title: Condition Id
+          type: integer
+        details:
+          title: Details
+          type: string
+        name:
+          title: Name
+          type: string
+      required:
+      - name
+      - condition_id
+      title: ExpectationModifySerializer
+      type: object
+    ExpectationWithConditionSerializer:
+      properties:
+        condition:
+          $ref: '#/components/schemas/Condition'
+        details:
+          title: Details
+          type: string
+        id:
+          title: Id
+          type: integer
+        name:
+          title: Name
+          type: string
+      required:
+      - id
+      - name
+      - condition
+      title: ExpectationWithConditionSerializer
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            type: string
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+      type: object
+info:
+  title: FastAPI
+  version: 0.1.0
+openapi: 3.0.2
+servers:
+  - url: http://localhost:8081/
+paths:
+  /:
+    get:
+      description: Default informative end-point running on root address
+      operationId: display_root__get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      summary: Display Root
+  /api/appointment:
+    get:
+      description: List all items in the database
+      operationId: list_item_api_appointment_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Appointment'
+                title: Response List Item Api Appointment Get
+                type: array
+          description: Successful Response
+      summary: List Item
+    post:
+      description: Create an item in the database
+      operationId: create_item_api_appointment_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppointmentModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item
+  /api/appointment-with-condition:
+    get:
+      description: 'List all items in the database and return a list of
+
+        nested structures with condition as a nested field'
+      operationId: list_item_with_condition_api_appointment_with_condition_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AppointmentWithConditionSerializer'
+                title: Response List Item With Condition Api Appointment With Condition
+                  Get
+                type: array
+          description: Successful Response
+      summary: List Item With Condition
+    post:
+      description: 'Create an item in the database and return
+
+        nested structure with condition as a nested field'
+      operationId: create_item_condition_api_appointment_with_condition_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppointmentModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppointmentWithConditionSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item Condition
+    put:
+      description: 'Update the item in the database and return
+
+        nested structure with condition as a nested field'
+      operationId: update_item_condition_api_appointment_with_condition_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Appointment'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AppointmentWithConditionSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item Condition
+  /api/appointment/{item_id}:
+    delete:
+      description: Delete the item in the database
+      operationId: delete_item_api_appointment__item_id__delete
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Item
+    get:
+      description: Detail of the item in the database
+      operationId: detail_item_api_appointment__item_id__get
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Detail Item
+    put:
+      description: Update the item in the database
+      operationId: update_item_api_appointment__item_id__put
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AppointmentModifySerializer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Appointment'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item
+  /api/concern:
+    get:
+      description: List all items in the database
+      operationId: list_item_api_concern_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConcernSerializer'
+                title: Response List Item Api Concern Get
+                type: array
+          description: Successful Response
+      summary: List Item
+    post:
+      description: Create an item in the database
+      operationId: create_item_api_concern_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConcernModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcernSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item
+  /api/concern-with-condition:
+    get:
+      description: 'List all items in the database and return a list of
+
+        nested structures with condition as a nested field'
+      operationId: list_item_with_condition_api_concern_with_condition_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConcernWithConditionSerializer'
+                title: Response List Item With Condition Api Concern With Condition
+                  Get
+                type: array
+          description: Successful Response
+      summary: List Item With Condition
+    post:
+      description: 'Create an item in the database and return
+
+        nested structure with condition as a nested field'
+      operationId: create_item_condition_api_concern_with_condition_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConcernModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcernWithConditionSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item Condition
+    put:
+      description: 'Update the item in the database and return
+
+        nested structure with condition as a nested field'
+      operationId: update_item_condition_api_concern_with_condition_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConcernSerializer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcernWithConditionSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item Condition
+  /api/concern/{item_id}:
+    delete:
+      description: Delete the item in the database
+      operationId: delete_item_api_concern__item_id__delete
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Item
+    get:
+      description: Detail of the item in the database
+      operationId: detail_item_api_concern__item_id__get
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcernSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Detail Item
+    put:
+      description: Update the item in the database
+      operationId: update_item_api_concern__item_id__put
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConcernModifySerializer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConcernSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item
+  /api/condition:
+    get:
+      description: List all items in the database
+      operationId: list_item_api_condition_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Condition'
+                title: Response List Item Api Condition Get
+                type: array
+          description: Successful Response
+      summary: List Item
+    post:
+      description: Create an item in the database
+      operationId: create_item_api_condition_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConditionModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item
+  /api/condition-with-doctor:
+    get:
+      description: 'Return nested dict without doctor_id but as nested
+
+        dict for ''doctor'' key (presenting the whole Doctor object).'
+      operationId: list_doctor_and_condition_api_condition_with_doctor_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ConditionDoctorNestedSerializer'
+                title: Response List Doctor And Condition Api Condition With Doctor
+                  Get
+                type: array
+          description: Successful Response
+      summary: List Doctor And Condition
+    post:
+      description: Create both doctor and condition in one call
+      operationId: create_doctor_and_condition_api_condition_with_doctor_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConditionAndDoctorModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionDoctorNestedSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Doctor And Condition
+    put:
+      description: "Update both doctor and condition on one call.\n        "
+      operationId: update_doctor_and_condition_api_condition_with_doctor_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConditionAndDoctorSerializer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConditionDoctorNestedSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Doctor And Condition
+  /api/condition/{item_id}:
+    delete:
+      description: Delete the item in the database
+      operationId: delete_item_api_condition__item_id__delete
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Item
+    get:
+      description: Detail of the item in the database
+      operationId: detail_item_api_condition__item_id__get
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Detail Item
+    put:
+      description: Update the item in the database
+      operationId: update_item_api_condition__item_id__put
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConditionModifySerializer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Condition'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item
+  /api/doctor:
+    get:
+      description: List all items in the database
+      operationId: list_item_api_doctor_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Doctor'
+                title: Response List Item Api Doctor Get
+                type: array
+          description: Successful Response
+      summary: List Item
+    post:
+      description: Create an item in the database
+      operationId: create_item_api_doctor_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DoctorModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doctor'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item
+  /api/doctor/{item_id}:
+    delete:
+      description: Delete the item in the database
+      operationId: delete_item_api_doctor__item_id__delete
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Item
+    get:
+      description: Detail of the item in the database
+      operationId: detail_item_api_doctor__item_id__get
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doctor'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Detail Item
+    put:
+      description: Update the item in the database
+      operationId: update_item_api_doctor__item_id__put
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DoctorModifySerializer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Doctor'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item
+  /api/expectation:
+    get:
+      description: List all items in the database
+      operationId: list_item_api_expectation_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Expectation'
+                title: Response List Item Api Expectation Get
+                type: array
+          description: Successful Response
+      summary: List Item
+    post:
+      description: Create an item in the database
+      operationId: create_item_api_expectation_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpectationModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expectation'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item
+  /api/expectation-with-condition:
+    get:
+      description: 'List all items in the database and return a list of
+
+        nested structures with condition as a nested field'
+      operationId: list_item_with_condition_api_expectation_with_condition_get
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/ExpectationWithConditionSerializer'
+                title: Response List Item With Condition Api Expectation With Condition
+                  Get
+                type: array
+          description: Successful Response
+      summary: List Item With Condition
+    post:
+      description: 'Create an item in the database and return
+
+        nested structure with condition as a nested field'
+      operationId: create_item_condition_api_expectation_with_condition_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpectationModifySerializer'
+        required: true
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpectationWithConditionSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Create Item Condition
+    put:
+      description: 'Update the item in the database and return
+
+        nested structure with condition as a nested field'
+      operationId: update_item_condition_api_expectation_with_condition_put
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Expectation'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExpectationWithConditionSerializer'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item Condition
+  /api/expectation/{item_id}:
+    delete:
+      description: Delete the item in the database
+      operationId: delete_item_api_expectation__item_id__delete
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Delete Item
+    get:
+      description: Detail of the item in the database
+      operationId: detail_item_api_expectation__item_id__get
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expectation'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Detail Item
+    put:
+      description: Update the item in the database
+      operationId: update_item_api_expectation__item_id__put
+      parameters:
+      - in: path
+        name: item_id
+        required: true
+        schema:
+          title: Item Id
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExpectationModifySerializer'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Expectation'
+          description: Successful Response
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      summary: Update Item
